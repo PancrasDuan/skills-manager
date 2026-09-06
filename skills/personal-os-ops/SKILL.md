@@ -14,7 +14,7 @@ description: 在日常对话里新建或修改 Personal OS 的 task 与 schedule
 - `schedules`：`id, title, frequency, schedule, task_template, active, created_at, is_deleted, next_run_at`
 - `area`：`work / life / study`；`status`：`todo / doing / done / skipped`；`priority`：1~3
 - `frequency`：`daily / weekly / monthly / quarterly / yearly`
-- `schedule` JSON 与 generate-today 相同：daily `{}`；weekly `{"weekday":1-7}`；monthly `{"day":1-31}`；quarterly `{"month_of_quarter":1-3,"day":1-31}`；yearly `{"month":1-12,"day":1-31}`
+- `schedule` JSON 与 generate-today 相同：daily `{}`；其余用数组。weekly `{"weekdays":[1,2,3]}`（1=周一，7=周日）；monthly `{"days":[1,15]}`；quarterly `{"months_of_quarter":[1,3],"days":[6]}`；yearly `{"months":[3,9],"days":[1]}`。单数 `weekday`/`day`/`month`/`month_of_quarter` 视为只有一项的数组
 - 手工任务 `schedule_id is null`；生成任务 `schedule_id` 非空
 
 ## id 规则
