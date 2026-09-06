@@ -47,8 +47,8 @@ description: 生成 Personal OS 早报、晚报或周报。在触发器或用户
 | status | 规则 |
 |---|---|
 | `done` 且 `completed_at` 落在今天 | 进「今天完成」，含补做（`planned_at` 不是今天也算） |
-| `todo` / `doing` 且 `planned_at < 今天` | 进「今天之前未完成」 |
-| 今天的 `todo` / `doing` | 不算今天完成 |
+| `todo` / `doing` 且 `planned_at < 明天` | 进「仍未完成」（含今天） |
+| 今天的 `todo` / `doing` | 不算今天完成，进「仍未完成」 |
 | `skipped` | 不算完成；今天跳过的可在统计里写「id=N 已跳过，不算完成」 |
 | `is_deleted=true` | 不出现 |
 
@@ -104,12 +104,12 @@ where completed_at >= :today_start
   and is_deleted = false;
 ```
 
-今天之前未完成：
+仍未完成（含今天的 todo / doing）：
 
 ```sql
 select id, title, area, status, priority, planned_at
 from tasks
-where planned_at < :today_start
+where planned_at < :tomorrow_start
   and status in ('todo', 'doing')
   and is_deleted = false;
 ```
