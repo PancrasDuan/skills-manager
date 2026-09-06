@@ -28,7 +28,7 @@ description: 为 Personal OS 生成当天由 schedule 投影出的任务实例�
 | `quarterly` | `{"months_of_quarter":[1,3],"days":[6]}` | 本季第几月在列表里，且几号在列表里。Q1=1-3月，Q2=4-6，Q3=7-9，Q4=10-12 |
 | `yearly` | `{"months":[3,9],"days":[1]}` | 月份在列表里，且几号在列表里 |
 
-只写一个值时，也可写成单数，按只有一项的数组处理：`{"weekday":3}` 等于 `{"weekdays":[3]}`；`day` / `month` / `month_of_quarter` 同理。
+即使只有一个日期，也必须用数组，例如每周三：`{"weekdays":[3]}`。不要写 `weekday` / `day` / `month` / `month_of_quarter` 这些单数字段；见到单数就当看不懂：跳过并说明，不要猜，也不要擅自改成数组。
 
 JSON 缺字段或看不懂：跳过并说明，不要猜。
 
